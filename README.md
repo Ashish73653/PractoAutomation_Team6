@@ -16,13 +16,18 @@ The framework executes both valid and invalid test data within the same scenario
 
 1. Registration
 2. Login
-3. Find Doctor
-4. Consult with Doctor
-5. Lab Tests
-6. Health Feed
-7. Medicine Ordering
-8. Footer Validation
-9. Help and Support
+3. Forgot Password
+4. Find Doctor
+5. Consult with Doctor
+6. Lab Tests
+7. Health Feed
+8. Medicine Ordering
+9. Footer Validation
+10. Help and Support
+11. Surgery Appointment
+12. Contact Us
+13. Insta by Practo
+14. Careers
 
 ---
 
@@ -49,16 +54,18 @@ The framework executes both valid and invalid test data within the same scenario
 
 ### Example Data
 
-| Name         | Email               | Password | Expected Result  |
-| ------------ | ------------------- | -------- | ---------------- |
-| Valid User   | validuser@gmail.com | Test@123 | Success          |
-| Invalid User | invalidgmail.com    | 123      | Validation Error |
+| Name           | Email                | Password | Expected Result  |
+| -------------- | -------------------- | -------- | ---------------- |
+| Valid User 1   | validuser1@gmail.com | Test@123 | Success          |
+| Valid User 2   | validuser2@gmail.com | Pass@123 | Success          |
+| Invalid User 1 | invalidgmail.com     | 123      | Validation Error |
+| Invalid User 2 | test@.com            | pass     | Validation Error |
 
 ---
 
 # 2. Login Scenarios
 
-## Scenario: Login with Valid Credentials
+## Scenario: Login with Valid and Invalid Credentials
 
 ### Flow
 
@@ -75,18 +82,44 @@ The framework executes both valid and invalid test data within the same scenario
 ### Validation
 
 - Successful login for valid credentials
+- Proper validation for invalid credentials
 
 ### Example Data
 
-| Email               | Password | Expected Result |
-| ------------------- | -------- | --------------- |
-| validuser@gmail.com | Test@123 | Success         |
+| Email                 | Password | Expected Result |
+| --------------------- | -------- | --------------- |
+| validuser1@gmail.com  | Test@123 | Success         |
+| validuser2@gmail.com  | Pass@123 | Success         |
+| invaliduser@gmail.com | wrong123 | Error Message   |
+| test@gmail.com        | 12345    | Error Message   |
 
 ---
 
-# 3. Find Doctor Scenarios
+# 3. Forgot Password Scenarios
 
-## Scenario 1: Search Doctor Using Speciality and Filters
+## Scenario: Reset Password Using Registered Mobile Number or Email
+
+### Flow
+
+1. Navigate to login page
+2. Click on Forgot Password
+3. Enter registered mobile number or email
+4. Click on Send Instructions
+5. Enter OTP received
+6. Enter new password
+7. Confirm new password
+8. Click on Change Password
+
+### Validation
+
+- Password should be updated successfully
+- User should be able to login using new password
+
+---
+
+# 4. Find Doctor Scenarios
+
+## Scenario 1: Search Doctor Using Speciality and Filters with Appointment Booking
 
 ### Flow
 
@@ -98,13 +131,15 @@ The framework executes both valid and invalid test data within the same scenario
 6. Select experience above 5 years
 7. Sort consultation fee low to high
 8. Select first doctor
-9. Log doctor details
-10. Capture screenshot
+9. Book appointment
+10. Select available timeslot
+11. Enter mobile number
+12. Enter OTP
+13. Continue booking
 
 ### Validation
 
-- Proper doctor listing should appear
-- Filters should work correctly
+- Doctor appointment booking flow should complete successfully
 
 ---
 
@@ -127,7 +162,7 @@ The framework executes both valid and invalid test data within the same scenario
 
 ---
 
-# 4. Consult with Doctor Scenarios
+# 5. Consult with Doctor Scenarios
 
 ## Scenario: Book Video Consultation
 
@@ -145,11 +180,11 @@ The framework executes both valid and invalid test data within the same scenario
 
 ### Validation
 
-- Consultation flow should complete successfully
+- Consultation booking flow should complete successfully
 
 ---
 
-# 5. Lab Test Scenarios
+# 6. Lab Test Scenarios
 
 ## Scenario 1: Book Lipid Test
 
@@ -170,7 +205,7 @@ The framework executes both valid and invalid test data within the same scenario
 
 ### Validation
 
-- Test booking flow should work correctly
+- Test booking flow should work successfully
 
 ---
 
@@ -180,7 +215,7 @@ The framework executes both valid and invalid test data within the same scenario
 
 1. Login to application
 2. Navigate to Lab Tests
-3. Add multiple tests to cart
+3. Add multiple top booked tests to cart
 4. Capture cart screenshot
 5. Proceed to checkout
 6. Fill all forms
@@ -195,45 +230,35 @@ The framework executes both valid and invalid test data within the same scenario
 
 ---
 
-# 6. Health Feed Scenarios
+# 7. Health Feed Scenarios
 
-## Scenario 1: Search and Like Health Article
+## Scenario: Health Feed Article Search and Topic Follow
 
 ### Flow
 
 1. Navigate to home page
-2. Open health articles section
-3. Click See All Articles
+2. Scroll to "Read top articles from health experts"
+3. Click on See All Articles
 4. Search Weight Loss
 5. Open 5th article
-6. Like article
+6. Click Like
 7. Log article title and doctor name
+8. Navigate back to articles section
+9. Open Healthy Skin topic
+10. Follow topic
+11. Navigate to For You tab
+12. Log 6th article details
 
 ### Validation
 
 - Article should open successfully
-- Like functionality should work
+- Like functionality should work properly
+- Healthy Skin topic should be followed successfully
+- Personalized articles should appear in For You section
 
 ---
 
-## Scenario 2: Follow Healthy Skin Topic
-
-### Flow
-
-1. Login to application
-2. Navigate to Health Feed
-3. Open Healthy Skin topic
-4. Follow topic
-5. Navigate to For You tab
-6. Log 6th article details
-
-### Validation
-
-- Topic follow functionality should work
-
----
-
-# 7. Medicine Ordering Scenarios
+# 8. Medicine Ordering Scenarios
 
 ## Scenario: Order Medicine
 
@@ -245,7 +270,7 @@ The framework executes both valid and invalid test data within the same scenario
 4. Add 2 strips to cart
 5. Change address to Bangalore
 6. Place order
-7. Capture payment gateway screenshot
+7. Capture screenshot of payment gateway
 
 ### Validation
 
@@ -254,7 +279,7 @@ The framework executes both valid and invalid test data within the same scenario
 
 ---
 
-# 8. Footer Validation
+# 9. Footer Validation
 
 ## Scenario: Validate Footer Links
 
@@ -271,9 +296,9 @@ The framework executes both valid and invalid test data within the same scenario
 
 ---
 
-# 9. Help and Support Scenarios
+# 10. Help and Support Scenarios
 
-## Scenario 1: Submit Contact Us Form
+## Scenario 1: Submit Contact Us Form from Help Section
 
 ### Flow
 
@@ -285,7 +310,7 @@ The framework executes both valid and invalid test data within the same scenario
 
 ### Validation
 
-- Form submission should succeed
+- Form should submit successfully
 
 ---
 
@@ -305,6 +330,86 @@ The framework executes both valid and invalid test data within the same scenario
 
 ---
 
+# 11. Surgery Appointment Scenarios
+
+## Scenario: Book Surgery Appointment
+
+### Flow
+
+1. Open Practo Surgery booking page
+2. Select city as Bangalore
+3. Select ailment as Knee Replacement
+4. Enter patient name
+5. Enter contact number
+6. Click on Book Appointment
+
+### Validation
+
+- Surgery appointment request should be submitted successfully
+
+---
+
+# 12. Contact Us Scenarios
+
+## Scenario: Submit Contact Us Form
+
+### Flow
+
+1. Open Contact Us page
+2. Select "Software to manage my hospital(s)" from Interested In dropdown
+3. Enter name
+4. Enter mobile number
+5. Enter email address
+6. Verify country is India
+7. Enter city as Delhi
+8. Enter message
+9. Click Submit
+
+### Validation
+
+- Contact request should be submitted successfully
+
+---
+
+# 13. Insta by Practo Scenarios
+
+## Scenario: Get Free Demo
+
+### Flow
+
+1. Open Practo website
+2. Click on Insta by Practo
+3. Click on Select Plans
+4. Enter required details:
+   - Name
+   - Email
+   - Mobile Number
+   - City
+5. Click on Get Free Demo
+6. Validate success message
+7. Capture screenshot
+
+### Validation
+
+- Demo request should be submitted successfully
+- Success message should be displayed
+
+---
+
+# 14. Careers Scenarios
+
+## Scenario: Careers Module
+
+### Flow
+
+- To be added later
+
+### Validation
+
+- To be added later
+
+---
+
 # Automation Notes
 
 - Framework: Playwright + Cucumber BDD
@@ -319,15 +424,11 @@ The framework executes both valid and invalid test data within the same scenario
 
 # Team Scenario Allocation
 
-| Team Member      | Assigned Scenarios                                                                                             |
-| ---------------- | -------------------------------------------------------------------------------------------------------------- |
-| Pavitra Sharma   | 1. Registration with Valid & Invalid Inputs <br> 2. Login with Valid Credentials <br> 3. Footer Validation     |
-| Puneet Thapliyal | 1. Find Doctor Using Speciality & Filters <br> 2. Find Doctor Using Hospital Name <br> 3. Search Help Question |
-| Ashish Singh     | 1. Book Video Consultation <br> 2. Book Lipid Test <br> 3. Add Multiple Top Booked Tests                       |
-| Abhishek gargya  | 1. Search and Like Health Article <br> 2. Follow Healthy Skin Topic <br> 3. Order Medicine                     |
+| Team Member      | Assigned Scenarios                                                                                                                                                                  |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Pavitra Sharma   | 1. Registration with Valid & Invalid Inputs <br> 2. Login with Valid Credentials <br> 3. Footer Validation <br> 4. Submit Contact Us Form from Help Section <br> 5. Forgot Password |
+| Puneet Thapliyal | 1. Find Doctor Using Speciality & Filters <br> 2. Find Doctor Using Hospital Name <br> 3. Search Help Question <br> 4. Health Feed Article Search and Topic Follow                  |
+| Ashish Singh     | 1. Book Video Consultation <br> 2. Book Lipid Test <br> 3. Add Multiple Top Booked Tests <br> 4. Careers Module                                                                     |
+| Abhishek Gargya  | 1. Order Medicine <br> 2. Surgery Appointment Scenario <br> 3. Submit Contact Us Form Page <br> 4. Insta by Practo                                                                  |
 
 ---
-
-# Unallocated Scenario
-
-- Submit Contact Us Form
