@@ -5,7 +5,11 @@ const { chromium } = require("@playwright/test");
 
 const AUTH_FILE = path.resolve(
   __dirname,
-  "playwright/.auth/practo.cookies.json",
+  "..",
+  "..",
+  "playwright",
+  ".auth",
+  "practo.cookies.json",
 );
 const PRACTO_URL = "https://www.practo.com/";
 
