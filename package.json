@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "This document contains end-to-end automation and manual testing scenarios for major modules of the Practo application. The scenarios cover user registration, login, doctor consultation, lab tests, medicine ordering, health feed, footer validation, and help/support functionalities.",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "save-auth": "node saveAuth.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Ashish73653/PractoAutomation_Team6.git"
