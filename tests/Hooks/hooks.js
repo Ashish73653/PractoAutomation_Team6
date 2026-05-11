@@ -24,6 +24,7 @@ function readCookies() {
 
 async function injectCookies(context) {
   const cookies = readCookies();
+
   if (!cookies.length) {
     console.log("No cookies to inject");
     return;
