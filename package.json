@@ -4,7 +4,9 @@
   "description": "This document contains end-to-end automation and manual testing scenarios for major modules of the Practo application. The scenarios cover user registration, login, doctor consultation, lab tests, medicine ordering, health feed, footer validation, and help/support functionalities.",
   "main": "index.js",
   "scripts": {
-    "save-auth": "node tests/util/saveAuth.js"
+    "save-auth": "node tests/util/saveAuth.js",
+    "test:debug:win": "powershell -Command \"$env:PWDEBUG=1; npx cucumber-js tests/features\"",
+    "test": "cucumber-js tests/features"
   },
   "repository": {
     "type": "git",

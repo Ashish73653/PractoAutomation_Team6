@@ -1,6 +1,9 @@
 const fs = require("fs");
 const path = require("path");
-const { Before } = require("@cucumber/cucumber");
+const { Before, After, setDefaultTimeout } = require("@cucumber/cucumber");
+const { chromium } = require("@playwright/test");
+
+setDefaultTimeout(30 * 1000);
 
 const AUTH_FILE = path.resolve(
   __dirname,
@@ -30,14 +33,26 @@ async function injectCookies(context) {
 }
 
 Before(async function () {
-  const context =
-    this.context || (this.page && this.page.context && this.page.context());
+  const browser = await chromium.launch({
+    headless: false,
+  });
+  const context = await browser.newContext();
+  const page = await context.newPage();
 
-  if (!context) {
-    return;
-  }
+  this.browser = browser;
+  this.context = context;
+  this.page = page;
 
   await injectCookies(context);
+});
+
+After(async function () {
+  if (this.context) {
+    await this.context.close();
+  }
+  if (this.browser) {
+    await this.browser.close();
+  }
 });
 
 module.exports = { injectCookies };
