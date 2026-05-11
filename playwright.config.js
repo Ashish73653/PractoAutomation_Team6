@@ -4,7 +4,7 @@ const { defineBddConfig } = require("playwright-bdd");
 
 const testDir = defineBddConfig({
   features: "./tests/Features/*.feature",
-  steps: ["./tests/fixture.js", "./tests/Steps/*.js", "./tests/Hooks/*.js"],
+  steps: ["./tests/Hooks/hooks.js", "./tests/Steps/*.js"],
 });
 /**
  * Read environment variables from file.

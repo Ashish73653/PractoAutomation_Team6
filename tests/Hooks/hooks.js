@@ -1,6 +1,8 @@
 const fs = require("fs");
+const path = require("path");
 const { Before, After, setDefaultTimeout } = require("@cucumber/cucumber");
 const { chromium } = require("@playwright/test");
+setDefaultTimeout(30 * 1000);
 const { AUTH_FILE } = require("../util/saveAuth");
 
 setDefaultTimeout(60000);
@@ -37,8 +39,11 @@ async function injectCookies(context) {
 
 // Setup browser and page before each scenario
 Before(async function () {
+
   // Launch browser
-  this.browser = await chromium.launch({ headless: false });
+  this.browser = await chromium.launch({
+    headless: false,
+  });
 
   // Create context
   this.context = await this.browser.newContext();
@@ -54,6 +59,15 @@ Before(async function () {
 
 // Close browser after each scenario
 After(async function () {
+  if (this.browser) {
+    await this.browser.close();
+  }
+});
+
+After(async function () {
+  if (this.context) {
+    await this.context.close();
+  }
   if (this.browser) {
     await this.browser.close();
   }
