@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "save-auth": "node tests/util/saveAuth.js",
-    "test": "cucumber-js --config cucumber.json",
-    "test:dry-run": "cucumber-js --config cucumber.json --dry-run"
+    "test": "cucumber-js tests/Features --require tests/Hooks/*.js --require tests/Steps/*.js",
+    "test:debug:win": "powershell -Command \"$env:PWDEBUG=1; npx cucumber-js tests/Features\""
   },
   "repository": {
     "type": "git",

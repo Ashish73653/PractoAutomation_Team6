@@ -5,7 +5,7 @@
 This document contains end-to-end automation testing scenarios for the Practo application using:
 
 - Playwright
-- BDD Cucumber Framework
+- Cucumber Framework
 - Data Driven Testing (DDT)
 
 The framework executes both valid and invalid test data within the same scenario using Scenario Outline and Examples.
@@ -27,7 +27,7 @@ The framework executes both valid and invalid test data within the same scenario
 11. Surgery Appointment
 12. Contact Us
 13. Insta by Practo
-14. Careers
+14. Book Clinic Visit via Searching Hospital Name and Speciality
 
 ---
 
@@ -396,17 +396,29 @@ The framework executes both valid and invalid test data within the same scenario
 
 ---
 
-# 14. Careers Scenarios
+# 14. Book Clinic Visit via Searching Hospital Name and Speciality
 
-## Scenario: Careers Module
+## Scenario: Book Clinic Visit
 
 ### Flow
 
-- To be added later
+1. Open Practo website
+2. Select location
+3. Search and select hospital
+4. Open Doctors tab
+5. Select speciality
+6. Click on Book Clinic Visit
+7. Select Tomorrow tab
+8. Choose first available slot
+9. Capture screenshot
+10. Validate Confirm Clinic Visit button
 
 ### Validation
 
-- To be added later
+- Hospital should be selected successfully
+- Speciality filter should be applied
+- Time slot should be selected successfully
+- Confirm Clinic Visit button should be enabled
 
 ---
 
@@ -428,7 +440,7 @@ The framework executes both valid and invalid test data within the same scenario
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Pavitra Sharma   | 1. Registration with Valid & Invalid Inputs <br> 2. Login with Valid Credentials <br> 3. Footer Validation <br> 4. Submit Contact Us Form from Help Section <br> 5. Forgot Password |
 | Puneet Thapliyal | 1. Find Doctor Using Speciality & Filters <br> 2. Find Doctor Using Hospital Name <br> 3. Search Help Question <br> 4. Health Feed Article Search and Topic Follow                  |
-| Ashish Singh     | 1. Book Video Consultation <br> 2. Book Lipid Test <br> 3. Add Multiple Top Booked Tests <br> 4. Careers Module                                                                     |
+| Ashish Singh     | 1. Book Video Consultation <br> 2. Book Lipid Test <br> 3. Add Multiple Top Booked Tests <br> 4. Book Clinic Visit via Searching Hospital Name and Speciality                       |
 | Abhishek Gargya  | 1. Order Medicine <br> 2. Surgery Appointment Scenario <br> 3. Submit Contact Us Form Page <br> 4. Insta by Practo                                                                  |
 
 ---
