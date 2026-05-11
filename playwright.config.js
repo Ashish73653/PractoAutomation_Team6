@@ -3,7 +3,7 @@ const { defineConfig, devices } = require("@playwright/test");
 const { defineBddConfig } = require("playwright-bdd");
 
 const testDir = defineBddConfig({
-  features: "./tests/features/*.feature",
+  features: "./tests/Features/*.feature",
   steps: ["./tests/Hooks/hooks.js", "./tests/Steps/*.js"],
 });
 /**
@@ -17,7 +17,7 @@ const testDir = defineBddConfig({
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
-export default defineConfig({
+module.exports = defineConfig({
   testDir,
   /* Run tests in files in parallel */
   fullyParallel: true,
