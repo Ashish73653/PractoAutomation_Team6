@@ -1,15 +1,23 @@
 const fs = require("fs");
-const path = require("path");
 const { Before, After, setDefaultTimeout } = require("@cucumber/cucumber");
-const { chromium } = require("@playwright/test");
 setDefaultTimeout(30 * 1000);
-const { AUTH_FILE } = require("../util/saveAuth");
+const {
+  getAuthFile,
+  getBrowserType,
+  launchBrowser,
+  loadEnvFile,
+} = require("../util/browserConfig");
 
 setDefaultTimeout(60000);
 
+loadEnvFile();
+
+const browserType = getBrowserType();
+const AUTH_FILE = getAuthFile(browserType);
+
 function readCookies() {
   if (!fs.existsSync(AUTH_FILE)) {
-    console.log("No auth file found");
+    console.log(`No auth file found for ${browserType}`);
     return [];
   }
 
@@ -38,13 +46,21 @@ async function injectCookies(context) {
   }
 }
 
-// Setup browser and page before each scenario
-Before(async function () {
+function shouldInjectCookies(pickle) {
+  const tags = (pickle?.tags || []).map((tag) => tag.name.toLowerCase());
+  return (
+    !tags.includes("@registration") &&
+    !tags.includes("@login") &&
+    !tags.includes("@forgotpassword")
+  );
+}
 
+// Setup browser and page before each scenario
+Before(async function ({ pickle } = {}) {
   // Launch browser
-  this.browser = await chromium.launch({
-    headless: false,
-  });
+  this.browser = await launchBrowser(browserType);
+
+  console.log(`Running tests on ${browserType}`);
 
   // Create context
   this.context = await this.browser.newContext();
@@ -54,8 +70,10 @@ Before(async function () {
   this.page = await this.context.newPage();
   this.page.setDefaultTimeout(60000);
 
-  // Inject cookies for authentication
-  await injectCookies(this.context);
+  // Inject cookies only for scenarios that require an authenticated session
+  if (shouldInjectCookies(pickle)) {
+    await injectCookies(this.context);
+  }
 });
 
 // Close browser after each scenario

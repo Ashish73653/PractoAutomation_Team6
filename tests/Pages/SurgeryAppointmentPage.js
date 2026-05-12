@@ -81,12 +81,18 @@ class SurgeryAppointmentPage {
 
   async selectCityFromDropdown(cityName) {
     await this.cityDropdown.click();
-    await this.selectCity.click();
+
+    const cityOption = this.page.getByText(cityName, { exact: true }).first();
+    await cityOption.waitFor({ state: "visible", timeout: 15000 });
+    await cityOption.click();
   }
 
   async selectAilmentFromDropdown(ailmentName) {
     await this.ailmentDropdown.click();
-    await this.selectAilment.click();
+
+    const ailmentOption = this.page.getByText(ailmentName, { exact: true }).first();
+    await ailmentOption.waitFor({ state: "visible", timeout: 15000 });
+    await ailmentOption.click();
   }
 
   async enterPatientName(name) {

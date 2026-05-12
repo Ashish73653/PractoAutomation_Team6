@@ -80,11 +80,18 @@ class ForgotPasswordPage {
       .or(page.locator('input[type="submit"][value="Login"]'))
       .first();
 
-    this.newPasswordTF = page.locator("#new_password");
-    this.confirmNewPasswordTF = page.locator("#confirm");
+    this.newPasswordTF = page
+      .locator("#new_password")
+      .or(page.getByPlaceholder(/New Password/i))
+      .or(page.locator('input[type="password"]'))
+      .first();
+    this.confirmNewPasswordTF = page
+      .locator("#confirm")
+      .or(page.getByPlaceholder(/Confirm New Password/i))
+      .or(page.locator('input[type="password"]').nth(1))
+      .first();
 
-
-    this.changePasswordBtn = page.locator('button[type="submit"]')
+    this.changePasswordBtn = page.locator('button[type="submit"]');
   }
 
   async navigateTo() {

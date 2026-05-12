@@ -1,7 +1,7 @@
-const { chromium } = require("@playwright/test");
 const { Given, Then } = require("@cucumber/cucumber");
 const FindDoctorPage = require("../Pages/findDoctor.page.js");
 const { takePageScreenshot } = require("../util/takeScreenshots.js");
+const { getBrowserType, launchBrowser } = require("../util/browserConfig");
 
 let findDoctorPage;
 
@@ -13,14 +13,14 @@ function getPageObject(page) {
 Given("Navigate to {string}", async function (url) {
   if (!this.page || this.page.isClosed()) {
     if (!this.browser) {
-      this.browser = await chromium.launch({ headless: false });
+      this.browser = await launchBrowser(getBrowserType());
     }
 
     try {
       this.context = await this.browser.newContext();
       this.page = await this.context.newPage();
     } catch {
-      this.browser = await chromium.launch({ headless: false });
+      this.browser = await launchBrowser(getBrowserType());
       this.context = await this.browser.newContext();
       this.page = await this.context.newPage();
     }
@@ -48,8 +48,8 @@ Then("search speciality {string}", async function (speciality) {
 
 Then("select Gender {string}", async function (gender) {
   await findDoctorPage.selectGender();
-  
-  if (gender.toLowerCase() === 'female') {
+
+  if (gender.toLowerCase() === "female") {
     await findDoctorPage.selectFemale();
   }
 });
@@ -65,9 +65,9 @@ Then("select Sort By {string}", async function (sortOption) {
 });
 
 Then("select the first doctor", async function () {
-  // Wait for new page 
-  const newPagePromise = this.context.waitForEvent('page');
-  
+  // Wait for new page
+  const newPagePromise = this.context.waitForEvent("page");
+
   await findDoctorPage.clickOnDoctor();
 
   const newPage = await newPagePromise;
@@ -78,13 +78,13 @@ Then("select the first doctor", async function () {
 });
 
 Then("click on Book Appointment", async function () {
-    await this.page.waitForLoadState('domcontentloaded');
-    await findDoctorPage.bookDoctor();
-    // let element load
-    await this.page.waitForTimeout(2000);
+  await this.page.waitForLoadState("domcontentloaded");
+  await findDoctorPage.bookDoctor();
+  // let element load
+  await this.page.waitForTimeout(2000);
 });
 Then("Select first available time slot", async function () {
-    await findDoctorPage.selectFirstAvailableTimeSlot();
+  await findDoctorPage.selectFirstAvailableTimeSlot();
 });
 
 Then("fill valid email address {string}", async function (email) {
@@ -92,12 +92,14 @@ Then("fill valid email address {string}", async function (email) {
 });
 
 Then("disable the {string} notifications", async function (notificationType) {
-  if (notificationType.toLowerCase() === 'whatsapp') {
+  if (notificationType.toLowerCase() === "whatsapp") {
     await findDoctorPage.disableWhatsappNotification();
   }
 });
 
-Then("Verify by taking screenshot of the booking details appointment page", async function () {
-  await takePageScreenshot("booking_details.png", this.page);
-});
-
+Then(
+  "Verify by taking screenshot of the booking details appointment page",
+  async function () {
+    await takePageScreenshot("booking_details.png", this.page);
+  },
+);
