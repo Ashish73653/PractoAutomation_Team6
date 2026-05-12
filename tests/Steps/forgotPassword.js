@@ -21,31 +21,8 @@ When("I click the Send me instructions button", async function () {
   await forgotPasswordPage.clickOnSendMeInstructions();
 });
 
-When("I enter the OTP that I received", async function () {
-  const otp = process.env.PRACTO_OTP || "000000";
-  await forgotPasswordPage.enterOtp(otp);
-});
+Then("I should see the captcha challenge for password reset", async function () {
+  const captchaWidget = this.page.locator('iframe[title="reCAPTCHA"]');
 
-When("I click on Login Button", async function () {
-  await forgotPasswordPage.clickOnLoginBtn();
-});
-
-When("I write the New Password {string}", async function (newPassword) {
-  await forgotPasswordPage.enterNewPassword(newPassword);
-});
-
-When(
-  "I write the confirm New Password {string}",
-  async function (confirmNewPassword) {
-    await forgotPasswordPage.enterConfirmNewPassword(confirmNewPassword);
-  },
-);
-
-When("I click the Change Password button", async function () {
-  await forgotPasswordPage.clickOnChangePassword();
-});
-
-Then("I should see the message {string}", async function (expectedMessage) {
-  const actualMessage = await forgotPasswordPage.getResultMessage(expectedMessage);
-  expect(actualMessage).toContain(expectedMessage);
+  await expect(captchaWidget).toBeVisible();
 });

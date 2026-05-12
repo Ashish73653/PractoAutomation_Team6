@@ -25,4 +25,4 @@ Feature: User Login
 
     Examples:
       | mobileNumber | password         | expectedResult |
-      | 6396916975   | PractoDummy@123  | Success        |
+      | 6396916975   | PractoDummy@1234 | Success        |
