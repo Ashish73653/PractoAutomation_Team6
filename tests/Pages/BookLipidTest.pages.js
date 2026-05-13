@@ -42,11 +42,32 @@ class LabTestPage {
 
   async enterLabTestName(labTestName) {
     await this.page.waitForTimeout(1500);
-    await this.page.fill(this.searchTestsInput, labTestName);
+    await this.page.locator(this.searchTestsInput).fill(labTestName);
   }
 
-  async pressEnterKey() {
-    await this.page.keyboard.press("Enter");
+  async selectLabTestSuggestion(labTestName) {
+    await this.page.waitForTimeout(1500);
+
+    const suggestions = [
+      this.page.getByText(labTestName, { exact: false }).first(),
+      this.page.locator(`text=${labTestName}`).first(),
+      this.page
+        .locator("[role='option']")
+        .filter({ hasText: labTestName })
+        .first(),
+    ];
+
+    for (const suggestion of suggestions) {
+      try {
+        await suggestion.waitFor({ state: "visible", timeout: 5000 });
+        await suggestion.click();
+        return;
+      } catch (err) {
+        // try the next suggestion matcher
+      }
+    }
+
+    throw new Error(`Unable to select lab test suggestion for ${labTestName}`);
   }
 
   async clickAddToCartButton() {

@@ -1,49 +1,28 @@
 Feature: Lab Test Booking and Payment
-
+  @BookLipidTest
   Scenario Outline: User books a lab test successfully
 
     Given user opens the application URL "<URL>"
-
     When user clicks on "Lab Tests"
-
     And user is on "Lab Tests" page just click escape key to close any location popups
-
     And user clicks on search tests input
-
     And user enters lab test name "<LabTestName>"
-
-    And user presses Enter key
-
+    # And user presses Enter key
     And user clicks on Add to Cart button
-
     And user takes screenshot of cart "<CartScreenshot>"
-
     And user clicks on Proceed to Checkout button
-
     And user enters date of birth "<DateOfBirth>"
-
     And user selects gender as "<Gender>"
-
     And user enters email id "<Email>"
-
     And user clicks on Continue button
-
     And user clicks on Continue button for selected address
-
     And user selects first time slot "<TimeSlot>"
-
     And user clicks on Pay Now button
-
     And user enters card holder name "<CardHolderName>"
-
     And user enters debit card number "<CardNumber>"
-
     And user enters expiry month "<ExpiryMonth>"
-
     And user enters CVV "<CVV>"
-
     Then user should be able to proceed successfully
-
     And take screenshot "<ScreenshotName>"
 
     Examples:
