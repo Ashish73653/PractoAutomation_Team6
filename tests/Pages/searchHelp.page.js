@@ -1,7 +1,10 @@
 const data = require("../test-data/data.json");
+const { expect } = require("@playwright/test");
 
 class searchHelpPage {
     constructor(page) {
+        this.page = page;
+        // Help entry point and search controls
         this.help = page.locator('(//a[@href="https://help.practo.com"])[3]');
         this.input = page.locator("#s").first();
         this.submitBtn = page.locator("#searchsubmit").first();
@@ -48,6 +51,17 @@ class searchHelpPage {
         await this.questionLink.waitFor({ state: "visible", timeout: data.DEFAULT_TIMEOUT });
         await this.questionLink.click();
     }
+   async checkForEmptySearchResult(expectedResult) {
+      await this.page.waitForLoadState("domcontentloaded");
+        const inputValue = await this.input.inputValue();
+        const currentUrl = this.page.url();
+      
+        if (expectedResult === "Validation Error") {
+                        // Empty search uses the default prompt text
+            expect(inputValue).toMatch(/^(|Type your question and search)$/);
+            expect(currentUrl).toMatch(/[?&]s=(Type\+your\+question\+and\+search)?$/);
+        }   
+     }
 }
 
 module.exports = searchHelpPage;

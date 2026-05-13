@@ -11,21 +11,6 @@ function getPageObject(page) {
 }
 
 Given("Navigate to {string}", async function (url) {
-  if (!this.page || this.page.isClosed()) {
-    if (!this.browser) {
-      this.browser = await launchBrowser(getBrowserType());
-    }
-
-    try {
-      this.context = await this.browser.newContext();
-      this.page = await this.context.newPage();
-    } catch {
-      this.browser = await launchBrowser(getBrowserType());
-      this.context = await this.browser.newContext();
-      this.page = await this.context.newPage();
-    }
-  }
-
   await this.page.goto(url);
   findDoctorPage = getPageObject(this.page);
 });
@@ -65,7 +50,7 @@ Then("select Sort By {string}", async function (sortOption) {
 });
 
 Then("select the first doctor", async function () {
-  // Wait for new page
+  // The doctor profile opens in a new tab
   const newPagePromise = this.context.waitForEvent("page");
 
   await findDoctorPage.clickOnDoctor();
@@ -80,7 +65,7 @@ Then("select the first doctor", async function () {
 Then("click on Book Appointment", async function () {
   await this.page.waitForLoadState("domcontentloaded");
   await findDoctorPage.bookDoctor();
-  // let element load
+  // Let appointment panel render
   await this.page.waitForTimeout(2000);
 });
 Then("Select first available time slot", async function () {
