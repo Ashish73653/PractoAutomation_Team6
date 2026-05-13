@@ -1,34 +1,3 @@
-// class SurgeryAppointmentPage {
-//     constructor(page)  {
-//         this.page = page;
-//         this.surgeriesSection = page.locator('//a[@href="/care" and @aria-label="Surgeries"]');
-//         this.selectCityDropdown = page.locator('//span[@class="generalLeadForm-module_icon__jt4Z-"]').first();
-//         this.selectCity = page.locator('//div[@data-qa-id="city-name-container"]').first();
-//         this.selectAilmentDropdown = page.locator('(//span[@class="generalLeadForm-module_icon__jt4Z-"])[2]');
-//         this.selectAilment = page.locator(
-//           '//div[@class="list-module_itemContent__QEeb7 w-5/6 text-gray-2 text-12px font-normal cursor-pointer"]',
-//         ).first();
-//         this.nameTextField = page.getByPlaceholder("Name*");
-//         this.mobileTextField = page.locator("#Phone-Gen-Lead-Form");
-//         this.bookAppointmentButton = page.getByRole("button", { name: "Book Appointment" });
-//     }
-
-//     async navigateToSurgeryAppointment() {
-//         await this.surgeriesSection.waitFor({ state: "visible", timeout: 15000 });
-//         await this.surgeriesSection.click();
-//     }
-
-//     async selectCityFromDropdown(cityName) {
-//         await this.selectCity.click();
-//         const cityOption = this.page.locator(`//li[text()="${cityName}"]`);
-//         await cityOption.waitFor({ state: "visible", timeout: 15000 });
-//         await cityOption.click();
-//     }
-// }
-
-
-// pages/SurgeryAppointmentPage.js
-
 class SurgeryAppointmentPage {
   constructor(page) {
     this.page = page;
