@@ -27,6 +27,7 @@ When("the user opens the Surgeries category", async function () {
 });
 
 When("the user chooses city as {string}", async function (city) {
+  await this.page.waitForTimeout(3000);
   await surgeryPage.selectCityFromDropdown(city);
 });
 
