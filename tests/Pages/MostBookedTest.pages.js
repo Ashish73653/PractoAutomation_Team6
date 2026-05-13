@@ -38,7 +38,6 @@ class LabTestPage {
   }
 
   async clickFirstAddToCartButton() {
-    // Convenience: click both first and fifth using explicit locators
     await this.page.click(this.firstAddToCartButton);
     await this.page.waitForTimeout(3000); // wait for cart update after clicking add to cart
   }
@@ -71,7 +70,6 @@ class LabTestPage {
         console.log(
           `[CART-SCREENSHOT] Selector ${sel} not found or not visible: ${err.message}`,
         );
-        // try next selector
       }
     }
 

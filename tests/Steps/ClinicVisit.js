@@ -36,6 +36,10 @@ When("user clears content of hospital search bar", async function () {
   await getBookClinicVisit(this.page).clearHospitalSearchBar();
 });
 
+// ==========================
+// Positive Scenario
+// ==========================
+
 When("user enters hospital name {string}", async function (hospitalName) {
   await getBookClinicVisit(this.page).enterHospitalName(hospitalName);
 });
@@ -44,6 +48,17 @@ When(
   "user selects hospital {string} from suggestion list",
   async function (hospitalName) {
     await getBookClinicVisit(this.page).selectHospital(hospitalName);
+  },
+);
+
+// ==========================
+// Negative Scenario
+// ==========================
+
+When(
+  "user enters invalid hospital name {string}",
+  async function (hospitalName) {
+    await getBookClinicVisit(this.page).searchInvalidHospitalName(hospitalName);
   },
 );
 
@@ -82,10 +97,28 @@ When(
 Then(
   "user should be able to see enabled Confirm Clinic Visit button",
   async function () {
-    const isEnabled = await this.page
-      .locator(getBookClinicVisit(this.page).confirmClinicVisitButton)
-      .isEnabled();
+    await getBookClinicVisit(this.page).verifyConfirmClinicVisitButtonEnabled();
+  },
+);
 
-    expect(isEnabled).toBeTruthy();
+// =================================
+// Negative Scenario Validations
+// =================================
+
+Then(
+  "user should not see hospital {string} in suggestion list",
+  async function (hospitalName) {
+    await getBookClinicVisit(this.page).verifyHospitalNotVisible(hospitalName);
+  },
+);
+
+Then('user should see "No results found" message', async function () {
+  await getBookClinicVisit(this.page).verifyNoResultsMessage();
+});
+
+Then(
+  "user should not be able to click on Book Clinic Visit button",
+  async function () {
+    await getBookClinicVisit(this.page).verifyBookClinicVisitButtonNotVisible();
   },
 );
