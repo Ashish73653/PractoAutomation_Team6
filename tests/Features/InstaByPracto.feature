@@ -20,3 +20,4 @@ Feature: Insta by Practo Demo Registration
         Examples:
             | name      | email          | mobile     | city  |
             | Demo User | demo@gmail.com | 9876543210 | Delhi |
+
