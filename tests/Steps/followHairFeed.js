@@ -7,6 +7,7 @@ Before(function () {
 });
 
 When('click on {string}', async function (target) {
+  // Route the click based on the target label
   if (target.toLowerCase() === 'see all articles') {
     await this.followHairPage.clickFollowHairFeed();
     return;
@@ -21,6 +22,7 @@ When('click on {string}', async function (target) {
 });
 
 When('click on search for any heath topic', async function () {
+  // Focus the search bar before typing
   await this.followHairPage.searchForTopic();
 });
 

@@ -3,6 +3,7 @@ const  data = require('../test-data/data.json');
 class HospitalAndStoriesPage {
     constructor(page) {
         this.page = page;
+        // Search and filter controls
         this.findDoctor = page.locator('//a[.="Find Doctors"]');
         this.location = page.locator('(//input[@class="c-omni-searchbox c-omni-searchbox--large"])[1]');
         this.inputField = page.getByPlaceholder("Search doctors, clinics, hospitals, etc.");
@@ -11,6 +12,7 @@ class HospitalAndStoriesPage {
         this.pediatricianOption = page.getByText('pediatrician (2)')
         this.drSelect = page.getByText('Dr. Sumedha Gandotra', { exact: false }).first();
         this.viewProfileBtn = page.getByRole('button', { name: "View Profile" }).first();
+        // Story form elements
         this.shareLink = page.getByRole('link', { name: 'Share your story' })
         this.recommendBtn = page.locator('//label[@for="recommendDoctor"]');
         this.reasonField = page.getByText('e.g. Stomach Ache, body pain');

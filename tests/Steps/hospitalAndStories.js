@@ -31,7 +31,7 @@ When("Search for dr name {string}", async function (doctorName) {
 });
 
 When("click on view profile", async function () {
-    // Handle new tab opening
+    // Handle new tab opening when profile launches
     const newPagePromise = this.context.waitForEvent("page", { timeout: 10000 }).catch(() => null);
 
     await hospitalPage.clickViewProfile();
@@ -45,13 +45,14 @@ When("click on view profile", async function () {
     } else {
         await this.page.waitForLoadState("domcontentloaded");
     }
-    //reinitializing the page object with new constructor to reflect the new page context
+    // Reinitialize the page object for the current page context
     hospitalPage = new HospitalAndStoriesPage(this.page);
 });
 
 When("click Share your story", async function () {
     await hospitalPage.clickShareStory();
     await this.page.waitForLoadState("domcontentloaded");
+    // Refresh selectors after navigation
     hospitalPage = new HospitalAndStoriesPage(this.page);
 });
 
