@@ -11,3 +11,4 @@ Feature: Contact Us Form
     Examples:
       | name        | mobileNumber | email                 | country | city  | interestedIn                         | ownsClinic | userType | message                                  |
       | Test Doctor | 9876543210   | practotest@example.com | India   | Delhi | Software to manage my hospital(s)    | No         | Doctor   | Please contact me for Practo assistance. |
+      

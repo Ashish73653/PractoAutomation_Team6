@@ -1,0 +1,70 @@
+{
+  "valid": [
+    {
+      "testCaseId": "TC_LOGIN_003",
+      "testCaseTitle": "Login with valid registered mobile number and password",
+      "mobileNumber": "6396916975",
+      "password": "PractoDummy@1234",
+      "rememberMe": true,
+      "expectedResult": "Success"
+    }
+  ],
+  "invalid": [
+    {
+      "testCaseId": "TC_LOGIN_008",
+      "testCaseTitle": "Login with incorrect password",
+      "mobileNumber": "6396916975",
+      "password": "Wrong@999",
+      "rememberMe": true,
+      "expectedResult": "Failure"
+    },
+    {
+      "testCaseId": "TC_LOGIN_009",
+      "testCaseTitle": "Login with unregistered email",
+      "mobileNumber": "nobody@xyz.com",
+      "password": "Any@123",
+      "rememberMe": true,
+      "expectedResult": "Failure"
+    },
+    {
+      "testCaseId": "TC_LOGIN_010",
+      "testCaseTitle": "Login with blank Mobile Number or Email ID field",
+      "mobileNumber": "",
+      "password": "Valid@123",
+      "rememberMe": true,
+      "expectedResult": "Failure"
+    },
+    {
+      "testCaseId": "TC_LOGIN_011",
+      "testCaseTitle": "Login with blank Password field",
+      "mobileNumber": "user@test.com",
+      "password": "",
+      "rememberMe": true,
+      "expectedResult": "Failure"
+    },
+    {
+      "testCaseId": "TC_LOGIN_012",
+      "testCaseTitle": "Login with both fields blank",
+      "mobileNumber": "",
+      "password": "",
+      "rememberMe": true,
+      "expectedResult": "Failure"
+    },
+    {
+      "testCaseId": "TC_LOGIN_013",
+      "testCaseTitle": "Login with invalid email format",
+      "mobileNumber": "usertestcom",
+      "password": "Valid@123",
+      "rememberMe": true,
+      "expectedResult": "Failure"
+    },
+    {
+      "testCaseId": "TC_LOGIN_014",
+      "testCaseTitle": "Login with partial mobile number",
+      "mobileNumber": "98765",
+      "password": "Valid@123",
+      "rememberMe": true,
+      "expectedResult": "Failure"
+    }
+  ]
+}
