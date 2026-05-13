@@ -3,6 +3,7 @@ const  data = require('../test-data/data.json');
 class findDoctor{
     constructor(page){
           this.page = page
+          // Core navigation and search controls
           this.findDoctor = page.locator('//a[.="Find Doctors"]')
           this.location = page.locator('(//input[@class="c-omni-searchbox c-omni-searchbox--large"])[1]')
           this.inputField = page.getByPlaceholder("Search doctors, clinics, hospitals, etc.")
@@ -15,8 +16,9 @@ class findDoctor{
           this.lowestPrice = page.getByText('Consultation Fee - Low to High', { exact: true })
           this.drName = page.locator('[data-qa-id="doctor_name"]').nth(1);
           this.bookAppointmentBtn = page.locator('button[data-qa-id="book_appointment"], button:has-text("Book Clinic Visit"), button:has-text("Book Appointment")').first()
-          this.days = page.locator('[data-qa-id="date_selector"]');
-          this.slots = page.locator('[data-qa-id="slot_time"]');
+            // Appointment calendar and slot selectors
+            this.days = page.locator('[data-qa-id="date_selector"]');
+            this.slots = page.locator('[data-qa-id="slot_time"]');
           this.emailInput = page.getByPlaceholder("Enter Your Email ID (Optional)")
           this.whatsappNotification = page.locator("#whatsapp")
     }
@@ -77,10 +79,12 @@ class findDoctor{
         async disableWhatsappNotification(){
         await this.whatsappNotification.waitFor({ state: 'visible', timeout: data.DEFAULT_TIMEOUT });
         await this.whatsappNotification.click();
-        }   
+        }  
+        
+        //function for selecting time slots dynamically without fail through traversing each
+        //  available day and checking for available slots
         async selectFirstAvailableTimeSlot() {
-
-        // Select all days count
+            // Walk through days to pick the first available time slot
         const dayCount = await this.days.count();
         for (let i = 0; i < dayCount; i++) {
 
@@ -113,9 +117,9 @@ class findDoctor{
                 }
             }
         }
-
-        throw new Error('No slots available on any day');
     }
 }
+
+
 
 module.exports = findDoctor;

@@ -330,6 +330,22 @@ The framework executes both valid and invalid test data within the same scenario
 
 ---
 
+## Scenario 3: Search Invalid Help Question
+
+### Flow
+
+1. Navigate to Security
+2. Open Help section
+3. Search invalid help keyword
+4. Observe search results
+
+### Validation
+
+- No relevant help article should be displayed
+- “No results found” message should be displayed successfully
+
+---
+
 # 11. Surgery Appointment Scenarios
 
 ## Scenario: Book Surgery Appointment
@@ -351,7 +367,7 @@ The framework executes both valid and invalid test data within the same scenario
 
 # 12. Contact Us Scenarios
 
-## Scenario: Submit Contact Us Form
+## Scenario 1: Submit Contact Us Form
 
 ### Flow
 
@@ -368,6 +384,48 @@ The framework executes both valid and invalid test data within the same scenario
 ### Validation
 
 - Contact request should be submitted successfully
+
+---
+
+## Scenario 2: Submit Contact Form with Empty Name Field
+
+### Flow
+
+1. Open Contact Us page
+2. Select "Software to manage my hospital(s)" from Interested In dropdown
+3. Leave name field empty
+4. Enter mobile number
+5. Enter email address
+6. Verify country is India
+7. Enter city as Delhi
+8. Enter message
+9. Click Submit
+
+### Validation
+
+- Validation message for name field should be displayed
+- Form should not be submitted successfully
+
+---
+
+## Scenario 3: Submit Contact Form with Invalid Mobile Number
+
+### Flow
+
+1. Open Contact Us page
+2. Select "Software to manage my hospital(s)" from Interested In dropdown
+3. Enter name
+4. Enter mobile number with less than 10 digits
+5. Enter email address
+6. Verify country is India
+7. Enter city as Delhi
+8. Enter message
+9. Click Submit
+
+### Validation
+
+- Validation message for invalid mobile number should be displayed
+- Form should not be submitted successfully
 
 ---
 
@@ -398,7 +456,7 @@ The framework executes both valid and invalid test data within the same scenario
 
 # 14. Book Clinic Visit via Searching Hospital Name and Speciality
 
-## Scenario: Book Clinic Visit
+## Scenario 1: Book Clinic Visit Successfully
 
 ### Flow
 
@@ -422,6 +480,26 @@ The framework executes both valid and invalid test data within the same scenario
 
 ---
 
+## Scenario 2: Validate Invalid Hospital Search
+
+### Flow
+
+1. Open Practo website
+2. Select location
+3. Click on hospital search bar
+4. Enter invalid hospital name
+5. Search for hospital
+6. Observe search result message
+
+### Validation
+
+- Invalid hospital should not appear in suggestion list
+- “We couldn't find any doctors for you” message should be displayed
+- “didn't match anything” description should be displayed
+- Book Clinic Visit option should not be visible
+
+---
+
 # Automation Notes
 
 - Framework: Playwright + Cucumber BDD
@@ -436,11 +514,11 @@ The framework executes both valid and invalid test data within the same scenario
 
 # Team Scenario Allocation
 
-| Team Member      | Assigned Scenarios                                                                                                                                                                  |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Pavitra Sharma   | 1. Registration with Valid & Invalid Inputs <br> 2. Login with Valid Credentials <br> 3. Footer Validation <br> 4. Submit Contact Us Form from Help Section <br> 5. Forgot Password |
-| Puneet Thapliyal | 1. Find Doctor Using Speciality & Filters <br> 2. Find Doctor Using Hospital Name <br> 3. Search Help Question <br> 4. Health Feed Article Search and Topic Follow                  |
-| Ashish Singh     | 1. Book Video Consultation <br> 2. Book Lipid Test <br> 3. Add Multiple Top Booked Tests <br> 4. Book Clinic Visit via Searching Hospital Name and Speciality                       |
-| Abhishek Gargya  | 1. Order Medicine <br> 2. Surgery Appointment Scenario <br> 3. Submit Contact Us Form Page <br> 4. Insta by Practo                                                                  |
+| Team Member      | Assigned Scenarios                                                                                                                                                                                                                                           |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Pavitra Sharma   | 1. Registration with Valid & Invalid Inputs <br> 2. Login with Valid & Invalid Credentials (Using Data Driven Testing JSON) <br> 3. Footer Validation <br> 4. Submit Contact Us Form from Help Section <br> 5. Forgot Password                               |
+| Puneet Thapliyal | 1. Find Doctor Using Speciality & Filters <br> 2. Find Doctor Using Hospital Name <br> 3. Search Help Question (Using Data Driven Testing JSON) <br> 4. Health Feed Article Search and Topic Follow <br> 5. Search Invalid Help Question                     |
+| Ashish Singh     | 1. Book Video Consultation (Using Data Driven Testing JSON) <br> 2. Book Lipid Test <br> 3. Add Multiple Top Booked Tests <br> 4. Book Clinic Visit via Searching Hospital Name and Speciality <br> 5. Validate Invalid Hospital Search                      |
+| Abhishek Gargya  | 1. Order Medicine <br> 2. Surgery Appointment Scenario <br> 3. Submit Contact Us Form Page <br> 4. Insta by Practo (Using Data Driven Testing JSON) <br> 5. Submit Contact Form with Empty Name Field <br> 6. Submit Contact Form with Invalid Mobile Number |
 
 ---

@@ -27,12 +27,13 @@ When("user clicks on search tests input", async function () {
 When("user enters lab test name {string}", async function (labTestName) {
   const labTestPage = new LabTestPage(this.page);
   await labTestPage.enterLabTestName(labTestName);
+  await labTestPage.selectLabTestSuggestion(labTestName);
 });
 
-When("user presses Enter key", async function () {
-  const labTestPage = new LabTestPage(this.page);
-  await labTestPage.pressEnterKey();
-});
+// When("user presses Enter key", async function () {
+//   const labTestPage = new LabTestPage(this.page);
+//   await labTestPage.pressEnterKey();
+// });
 
 When("user clicks on Add to Cart button", async function () {
   const labTestPage = new LabTestPage(this.page);

@@ -7,6 +7,7 @@ class followHairFeedPage {
         this.followHairFeedBtn = page.getByRole('button', { name: 'See all articles' }).first();
         this.searchTopic = page.locator('#searchBar');
         this.textArea = page.getByRole('textbox', { name: 'Search for any health topic' })
+        // Feed list and actions
         this.Post =  page.locator('.horizontal-post-card').first() 
         this.likeBtn =  page.locator('.fit-feed-icon.icon-ic_heart_filled_system').first()
         this.HairCare =  page.getByRole('link', { name: 'Hair care' }).first()
@@ -23,6 +24,7 @@ class followHairFeedPage {
     }
     async fillTopic(topic){
         await this.textArea.fill(topic);
+        // Submit the search via Enter
         await this.page.keyboard.press('Enter');
     }
     async clickOnPost() {

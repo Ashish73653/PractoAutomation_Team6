@@ -2,13 +2,11 @@ class VideoConsultPage {
   constructor(page) {
     this.page = page;
 
-    // Login
     // this.loginButton = "text=Login";
     // this.mobileNumberInput = 'input[name="username"]';
     // this.passwordInput = 'input[name="password"]';
     // this.loginSubmitButton = 'button[type="submit"]';
 
-    // Consultation
     this.videoConsultButton = `//div[@class="nav-mid"]/descendant::a[@title="chat"][1]`;
     this.seeAllSpecialityButton = `//a[.="See all Specialities"]`;
     this.symptomInput = `//textarea[@name="detailedDescription"]`;

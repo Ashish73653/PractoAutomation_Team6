@@ -1,3 +1,9 @@
 {
-    "DEFAULT_TIMEOUT": 30000
+    "DEFAULT_TIMEOUT": 30000,
+    "searchHelp": {
+        "url": "https://www.practo.com/",
+        "searchQuery": "profile",
+        "emptySearchQuery": "",
+        "expectedEmptyResult": "Validation Error"
+    }
 }

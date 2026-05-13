@@ -1,0 +1,15 @@
+{
+  "testCases": [
+    {
+      "id": "VideoConsult_001",
+      "url": "https://www.practo.com",
+      "symptom": "Fever",
+      "speciality": "General Physician",
+      "cardHolderName": "Ashish Singh",
+      "cardNumber": "4111111111111111",
+      "expiryMonth": "12/2028",
+      "cvv": "123",
+      "screenshotName": "video_consult_booking.png"
+    }
+  ]
+}
