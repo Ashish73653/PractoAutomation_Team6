@@ -1,16 +1,13 @@
 const fs = require("fs");
 const readline = require("readline");
 const path = require("path");
-const { chromium } = require("@playwright/test");
+const {
+  getAuthFile,
+  getBrowserType,
+  launchBrowser,
+  loadEnvFile,
+} = require("./browserConfig");
 
-const AUTH_FILE = path.resolve(
-  __dirname,
-  "..",
-  "..",
-  "playwright",
-  ".auth",
-  "practo.cookies.json",
-);
 const PRACTO_URL = "https://www.practo.com/";
 
 function waitForEnter(message) {
@@ -28,7 +25,11 @@ function waitForEnter(message) {
 }
 
 async function saveAuth() {
-  const browser = await chromium.launch({ headless: false });
+  loadEnvFile();
+
+  const browserType = getBrowserType();
+  const AUTH_FILE = getAuthFile(browserType);
+  const browser = await launchBrowser(browserType);
   const context = await browser.newContext();
   const page = await context.newPage();
 
@@ -36,7 +37,7 @@ async function saveAuth() {
     await page.goto(PRACTO_URL, { waitUntil: "domcontentloaded" });
 
     console.log(
-      "Log in to Practo in the opened browser, then press Enter here to save cookies.",
+      `Log in to Practo in the opened ${browserType} browser, then press Enter here to save cookies.`,
     );
     await waitForEnter("Press Enter after you finish logging in:");
 
@@ -57,4 +58,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { saveAuth, AUTH_FILE };
+module.exports = { saveAuth, getAuthFile };

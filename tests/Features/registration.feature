@@ -10,4 +10,4 @@ Feature: User Registration
     Examples:
       | fullName         | mobileNumber | password      | expectedResult   |
       | Practo Test User | 9999999999   | Practo@12345  | OTP Sent         |
-      |               |         |            | Validation Error |
+      |                  |              |               | Validation Error |
