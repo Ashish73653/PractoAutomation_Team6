@@ -6,13 +6,13 @@ class SurgeryAppointmentPage {
       '//a[@href="/care" and @aria-label="Surgeries"]',
     );
 
-    this.cityDropdown = page.locator(
+    this.ailmentDropdown = page.locator(
       '(//span[contains(@class,"generalLeadForm-module_icon__jt4Z-")])[1]',
     );
     this.selectCity = page
       .locator('//div[@data-qa-id="city-name-container"]')
       .first();
-    this.ailmentDropdown = page.locator(
+    this.cityDropdown = page.locator(
       '(//span[contains(@class,"generalLeadForm-module_icon__jt4Z-")])[2]',
     );
     this.selectAilment = page
@@ -21,7 +21,7 @@ class SurgeryAppointmentPage {
       )
       .first();
 
-    this.nameTextField = page.getByPlaceholder("Name*");
+    this.nameTextField = page.locator("#Name-Gen-Lead-Form");
     this.mobileTextField = page.locator("#Phone-Gen-Lead-Form");
 
     this.bookAppointmentButton = page.getByRole("button", {
@@ -49,16 +49,19 @@ class SurgeryAppointmentPage {
   }
 
   async selectCityFromDropdown(cityName) {
+    await this.page.waitForTimeout(2000);
     await this.cityDropdown.click();
     await this.selectCity.click();
   }
 
   async selectAilmentFromDropdown(ailmentName) {
+    await this.page.waitForTimeout(2000);
     await this.ailmentDropdown.click();
     await this.selectAilment.click();
   }
 
   async enterPatientName(name) {
+    await this.page.waitForTimeout(2000);
     await this.nameTextField.fill(name);
   }
 

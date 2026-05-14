@@ -1,0 +1,2 @@
+URL,CartScreenshot,DateOfBirth,Gender,Email,TimeSlot,CardHolderName,CardNumber,ExpiryMonth,CVV,ScreenshotName
+https://www.practo.com,cart_page.png,25,Male,testuser@gmail.com,06:00 AM-06:30 AM,Ashish Singh,4111111111111111,12/28,123,lab_test_booking.png
