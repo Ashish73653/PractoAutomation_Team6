@@ -28,7 +28,12 @@ module.exports = defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: "html",
+  reporter: [
+    ["html", { open: "never", outputFolder: "playwright-report" }],
+    ["json", { outputFile: "test-results/results.json" }],
+    ["junit", { outputFile: "test-results/junit.xml" }],
+    ["allure-playwright", { outputFolder: "allure-results" }],
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
@@ -36,6 +41,10 @@ module.exports = defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
+    /* Enable video recording for Playwright Test runner (kept for completeness).
+       Note: the project in this repo launches browsers manually from hooks,
+       so video is primarily enabled in the hooks via context.recordVideo. */
+    video: "on",
   },
 
   /* Configure projects for major browsers */

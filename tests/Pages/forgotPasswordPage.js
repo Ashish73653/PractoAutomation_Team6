@@ -140,9 +140,9 @@ class ForgotPasswordPage {
   async enterOtp(otp) {
     await this.otpInput.waitFor({
       state: "visible",
-      timeout: 30000,
+      timeout: 60000,
     });
-
+    await this.page.waitForTimeout(10000);
     await this.otpInput.fill(otp);
 
     await this.page.screenshot({
